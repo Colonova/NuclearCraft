@@ -1,0 +1,22 @@
+modLoader="javafml"
+loaderVersion="[44,)"
+license="All rights reserved"
+[[mods]]
+modId="nuclearcraft"
+version="${file.jarVersion}"
+displayName="NuclearCraft: Overhauled"
+credits="Thanks to tomdodd4598 for creating the original mod!"
+authors="Colonova"
+description='''An unofficial port of NuclearCraft: Overhauled to Minecraft 1.19 and beyond!'''
+[[dependencies.nuclearcraft]]
+modId="forge"
+mandatory=true
+versionRange="[44,)"
+ordering="NONE"
+side="BOTH"
+[[dependencies.nuclearcraft]]
+modId="minecraft"
+mandatory=true
+versionRange="[1.19.3,1.20)"
+ordering="NONE"
+side="BOTH"

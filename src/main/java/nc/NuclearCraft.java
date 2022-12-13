@@ -1,67 +1,48 @@
 package nc;
 
-import java.io.IOException;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
+import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
+import net.minecraftforge.fml.event.lifecycle.InterModProcessEvent;
+import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
-import nc.config.NCConfig;
-import nc.handler.GuiHandler;
-import nc.proxy.CommonProxy;
-import nc.render.BlockHighlightTracker;
-import net.minecraftforge.fluids.FluidRegistry;
-import net.minecraftforge.fml.common.*;
-import net.minecraftforge.fml.common.Mod.*;
-import net.minecraftforge.fml.common.event.*;
-import net.minecraftforge.fml.common.network.NetworkRegistry;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
-@Mod(modid = Global.MOD_ID, name = Global.MOD_NAME, version = Global.VERSION, dependencies = Global.DEPENDENCIES, guiFactory = Global.GUI_FACTORY)
-public class NuclearCraft {
-	
-	static {
-		FluidRegistry.enableUniversalBucket();
-	}
-	
-	@Instance(Global.MOD_ID)
-	public static NuclearCraft instance;
-	
-	@SidedProxy(clientSide = Global.NC_CLIENT_PROXY, serverSide = Global.NC_SERVER_PROXY)
-	public static CommonProxy proxy;
-	
-	public BlockHighlightTracker blockOverlayTracker = new BlockHighlightTracker();
-	
-	@EventHandler
-	public void onConstruction(FMLConstructionEvent constructionEvent) throws IOException {
-		proxy.onConstruction(constructionEvent);
-	}
-	
-	@EventHandler
-	public void preInit(FMLPreInitializationEvent preEvent) {
-		NCConfig.preInit();
-		proxy.preInit(preEvent);
-	}
-	
-	@EventHandler
-	public void init(FMLInitializationEvent event) {
-		proxy.init(event);
-		NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandler());
-	}
-	
-	@EventHandler
-	public void postInit(FMLPostInitializationEvent postEvent) {
-		proxy.postInit(postEvent);
-		NCConfig.postInit();
-	}
-	
-	@EventHandler
-	public void serverStart(FMLServerStartingEvent serverStartEvent) {
-		proxy.serverStart(serverStartEvent);
-	}
-	
-	@EventHandler
-	public void serverStop(FMLServerStoppedEvent serverStopEvent) {
-		proxy.serverStop(serverStopEvent);
-	}
-	
-	@EventHandler
-	public void onIdMapping(FMLModIdMappingEvent idMappingEvent) {
-		proxy.onIdMapping(idMappingEvent);
-	}
+@Mod(Global.MOD_ID)
+public class NuclearCraft
+{
+    public static final Logger LOGGER = LogManager.getLogger();
+
+    public NuclearCraft()
+    {
+        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
+        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::enqueueIMC);
+        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::processIMC);
+        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::doClientStuff);
+
+        MinecraftForge.EVENT_BUS.register(this);
+    }
+
+    private void setup(final FMLCommonSetupEvent event)
+    {
+
+    }
+
+    private void doClientStuff(final FMLClientSetupEvent event)
+    {
+
+    }
+
+    private void enqueueIMC(final InterModEnqueueEvent event)
+    {
+
+    }
+
+    private void processIMC(final InterModProcessEvent event)
+    {
+
+    }
 }
